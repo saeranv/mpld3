@@ -7,16 +7,16 @@ import re
 import os
 from ._server import serve
 from .utils import deprecated, get_id, write_ipynb_local_js
-from .mplexporter import Exporter
 from .mpld3renderer import MPLD3Renderer
 from . import urls
+#import mplexporter
+from mplexporter import Exporter
 
 __all__ = ["fig_to_html", "fig_to_dict", "fig_to_d3",
            "display_d3", "display",
            "show_d3", "show",
            "enable_notebook", "disable_notebook",
            "save_html", "save_json"]
-
 
 # Simple HTML template. This works in standalone web pages for single figures,
 # but will not work within the IPython notebook due to the presence of
@@ -138,7 +138,7 @@ class NumpyEncoder(json.JSONEncoder):
             numpy.int16, numpy.int32, numpy.int64, numpy.uint8,
             numpy.uint16,numpy.uint32, numpy.uint64)):
             return int(obj)
-        elif isinstance(obj, (numpy.float_, numpy.float16, numpy.float32, 
+        elif isinstance(obj, (numpy.float_, numpy.float16, numpy.float32,
             numpy.float64)):
             return float(obj)
         elif isinstance(obj, (numpy.ndarray,)):
